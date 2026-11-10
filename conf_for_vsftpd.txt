@@ -1,0 +1,105 @@
+# Слушать только IPv4 (NO, YES)
+listen=NO
+
+# Слушать и IPv4 и IPv6 (NO, YES)
+listen_ipv6=YES
+
+# Разрешение анонимного доступа (NO, YES)
+anonymous_enable=NO
+
+# Разрешение входа через локальные учетные записи (/etc/passwd) (NO, YES)
+local_enable=YES
+
+# имя PAM-сервиса, которое использует vsftpd для аутентификации
+#pam_service_name=vsftpd
+
+# Создание списка разрешенных пользователей
+userlist_enable=YES
+userlist_deny=NO
+userlist_file=/etc/vsftpd.userlist
+
+# Редактирование на сервере (загрузка, создание, удаление, переименование)
+# Важно чтобы пользователь имел права на редактирование файлов в файловой системе
+write_enable=YES
+
+# Высчитывание прав для локальных пользователей при создании новых файлов и каталогов (по умолчанию - 077, то есть владелец: чтение+запись; группа и остальные: ничего)
+#local_umask=022
+
+# Параметры для анонимных учетных записей (работают с anonymous_enable=YES и write_enable=YES)
+# Загрузка файлов
+#anon_upload_enable=YES
+# Создание каталогов
+#anon_mkdir_write_enable=YES
+
+# Сообщения в каталогах
+# Ищет приветственный файл .message и выводит его на экран при входе
+#dirmessage_enable=YES
+# В листингах файлов (LIST) и в ответах команды MTM время показывается в локальном часовом поясе сервера, а не в GMT
+#use_localtime=YES
+
+# Логирование
+# Созранение логов в /var/log/vsftpd.log можно определить другой файл через xferlog_file
+#xferlog_enable=YES
+# Установление путя к файлу логов
+#xferlog_file=/var/log/vsftpd.log
+# Включает стандартный формат xferlog
+#xferlog_std_format=YES
+# Активный режим с портом 20
+#connect_from_port_20=YES
+
+# Смена владельца загруженных файлов анонимами (по умолчанию от имени учетки ftp)
+#chown_uploads=YES
+#chown_username=whoever
+
+# Таймауты (сек)
+# Через сколько секунд бездействия разрывать управляющую сессию
+#idle_session_timeout=600
+# Сколько ждать установки канала данных, прежде чем разорвать попытку
+#data_connection_timeout=120
+
+
+# Выполнение непривилегированных действий (по умолчанию nobody)
+#nopriv_user=ftpsecure
+
+# Прерывания идущей передачи
+#async_abor_enable=YES
+
+# Режим ASCII (для передачи с конвертацией в другие ворматы)
+#ascii_upload_enable=YES
+#ascii_download_enable=YES
+
+# Приветственное сообщение (вывод сразу после подключения)
+#ftpd_banner=Welcome to blah FTP service.
+
+# Запрет определенных email для анонимов
+#deny_email_enable=YES
+#banned_email_file=/etc/vsftpd.banned_emails
+
+# Изоляция пользователей в домашнем каталоге
+# «Заперт» в своём домашнем каталоге (если YES то пользователей из списка изолировать не надо)
+#chroot_local_user=YES 
+#chroot_list_enable=YES
+#chroot_list_file=/etc/vsftpd.chroot_list
+
+# Рекурсивный листинг (ls -R)
+#ls_recurse_enable=YES
+
+# Шифрование
+#rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
+#rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+#ssl_enable=NO
+
+ssl_enable=YES
+ssl_tlsv1=YES
+ssl_sslv2=NO
+ssl_sslv3=NO
+rsa_cert_file=/etc/ssl/certs/your_real_cert.pem
+rsa_private_key_file=/etc/ssl/private/your_real_key.key
+require_ssl_reuse=NO
+ssl_ciphers=HIGH
+
+force_local_logins_ssl=YES
+force_local_data_ssl=YES
+
+# Кодировка
+#utf8_filesystem=YES
